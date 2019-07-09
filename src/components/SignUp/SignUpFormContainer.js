@@ -1,10 +1,9 @@
 import React from 'react'
-import LoginForm from './LoginForm'
 import SignUpForm from './SignUpForm'
 import {connect} from 'react-redux'
-import {login} from '../actions/auth'
+import {signup} from '../../actions/auth'
 
-class LoginFormContainer extends React.Component {
+class SignUpFormContainer extends React.Component {
 state = {
     name: '',
     password: ''
@@ -13,7 +12,7 @@ state = {
 onSubmit = (event) => {
  event.preventDefault()
  console.log('SUBMIT?', this.state.name)
- this.props.login(this.state.name, this.state.password)
+ this.props.signup(this.state.name, this.state.password)
 }
 onChange = (event) => {
  console.log('CHANGE?', event.target.value)
@@ -22,9 +21,15 @@ onChange = (event) => {
  })
 }
 render() {
- return <LoginForm onSubmit={this.onSubmit} onChange={this.onChange} values={this.state}/>
- 
+ return (
+   <div>
+     <div>
+        <SignUpForm onSubmit={this.onSubmit} onChange={this.onChange} values={this.state}/>
+     </div>
+     
+    </div>
+  )
  }
 }
 
-export default connect(null, {login})(LoginFormContainer)
+export default connect(null, {signup})(SignUpFormContainer)

@@ -33,6 +33,8 @@ export const signup = (name, password) => (dispatch) => {
     .post(`${baseUrl}/signup`)
     .send({name: name, password: password})
     .then(response => {
+      console.log('RESPONSE', response.body)
+      dispatch(signupSucces(response.body))
 
     })
     .catch(console.error)

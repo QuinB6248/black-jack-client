@@ -13,7 +13,7 @@ export default function SignUpForm(props) {
           <label>PASSWORD</label>
         </div>
           <input name={'password'} onChange={onChange} value={values.password} placeholder='password'/>
-          <button type='submit'>LOGIN</button>
+          <button type='submit'>SIGNUP</button>
       </form>
     </div>
   )
