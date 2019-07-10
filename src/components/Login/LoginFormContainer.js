@@ -2,6 +2,7 @@ import React from 'react'
 import LoginForm from './LoginForm'
 import {connect} from 'react-redux'
 import {login} from '../../actions/auth'
+import {Switch, Route, Redirect} from 'react-router-dom'
 
 class LoginFormContainer extends React.Component {
 state = {
@@ -21,9 +22,12 @@ onChange = (event) => {
  })
 }
 render() {
+  console.log('AUTH', this.props.authenticated)
  return (
    <div>
      <div>
+       
+        {/* <Route path="/login" component={LoginFormContainer}/> */}
         <LoginForm onSubmit={this.onSubmit} onChange={this.onChange} values={this.state}/>
      </div>
      
@@ -32,4 +36,9 @@ render() {
  }
 }
 
-export default connect(null, {login})(LoginFormContainer)
+
+const mapStateToProps = state => ({
+  authenticated: !!state.currentUser
+})
+
+export default connect(mapStateToProps, {login})(LoginFormContainer)
