@@ -1,17 +1,22 @@
 export const GAMES_FETCHED = 'GAMES_FETCHED'
 
+/*
 const gamesFetched = games => ({
   type:  GAMES_FETCHED,
   payload: games
 })
+*/
 
-export const fetchGames = (event) => (dispatch) => {
+//EDIT: made one function for action creator
+export function fetchGames (event) {
   //console.log('event.data test:', event.data)
+  const {data} = event
 
-  const games = JSON.parse(event.data)
+  const games = JSON.parse(data)
 
-  //console.log('games test:', games)
-  dispatch(gamesFetched(games))
-
+  return {
+    type:  GAMES_FETCHED,
+    payload: games
+  }
   
 }
