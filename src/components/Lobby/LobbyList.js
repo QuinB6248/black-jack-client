@@ -11,17 +11,26 @@ if(!props.games) {
      return 'loading...'
      }
 
-// const { games, onAdd, onChange, onSubmit, values } = props
-// const {addMode} = values
-// const addForm =  <Form onChange={onChange} onSubmit={onSubmit} values={values}/>
-// const form = addMode && addForm
-// const listOfGames = games.map(game => <li key={game.id}><Link to={`/lobby/${game.id}`}>{game.name}</Link></li>)
+     
+const { games, onChange, onSubmit, values } = props
+console.log('GAMES', values)
+
+const listOfGames = games.map(game => <li key={game.id}><Link to={`/games/${game.id}`}>{game.name}</Link></li>)
   return (
     <div>
       
-      {/* <h4>{listOfGames}</h4> 
-      {form}
-      <button onClick={onAdd}>ADD GAME</button> */}
+      <h4>{listOfGames}</h4> 
+      <form onSubmit={onSubmit}>
+        <input
+          value={values.game}
+          onChange={onChange}
+          type='text'
+        />
+        <button>send</button>
+      </form> 
+
+      {/* {form}
+      <button onClick={onAdd}>ADD GAME</button> */} 
       
     </div>
   )
