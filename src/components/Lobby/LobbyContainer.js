@@ -43,7 +43,7 @@ onSubmit = (event) => {
 
   
 render() {
-    console.log('CURGAMES', this.props.games)
+    console.log('CURGAMES', this.props.currentUser)
   return (
     <div>
       <LobbyList

@@ -13,6 +13,7 @@ onSubmit = (event) => {
  event.preventDefault()
  console.log('SUBMIT?', this.state.name)
  this.props.signup(this.state.name, this.state.password)
+ //this.props.history.push('/login')
 }
 onChange = (event) => {
  console.log('CHANGE?', event.target.value)

@@ -12,30 +12,32 @@ import request from 'superagent'
 
 class GameContainer extends Component {
 state = {
-    game: []
+    game: ""
 }
 url = 'https://blooming-sierra-78117.herokuapp.com'
 
-source = new EventSource(`${this.url}/stream`)
+
+source = new EventSource(`${this.url}/streamdata/${this.props.match.params.id}`)
 
 componentDidMount() {
     
     this.source.onmessage = this.props.fetchGameDetails
   }
-sentEvent = () => {
-  const { game } = this.state
-  request
-  .post(`${this.url}/users`)
-  .send({game})
-  .then(response => {
-      console.log('responsetest: ', response)
-    })
-  .catch(console.error)
-}
+// sentEvent = () => {
+//   const { game } = this.state
+//   request
+//   .post(`${this.url}/users`)
+//   .send({game})
+//   .then(response => {
+//       console.log('responsetest: ', response)
+//     })
+//   .catch(console.error)
+// }
   
   
 render() {
-    
+    // const gameId = this.props.game.gameId
+    // console.log('IDD', gameId)
   return (
     <div>
       <GameDetails
@@ -47,7 +49,8 @@ render() {
   }
 }
 const mapStateToProps = state => ({
-  game: state.game
+  game: state.game,
+  games: state.games
   
   
 })

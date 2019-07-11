@@ -9,7 +9,7 @@ import {withRouter} from 'react-router'
 import LobbyContainer from './components/Lobby/LobbyContainer'
 
 function Routes(props) {
-  console.log('CURRENTUSER', props.authenticated)
+  console.log('CURRENTUSER', props.signupUser)
   return(<div>
    
     {!props.authenticated &&
@@ -22,17 +22,19 @@ function Routes(props) {
       
       
       
-      {props.authenticated &&
+    {props.authenticated && 
       <Switch>
         <Route path="/games" exact component={LobbyContainer} />
-        <Route path="/games/:id" component={GameContainer} />  
+        <Route path="/streamdata/:id" component={GameContainer} />  
         <Route path="" render={() => <Redirect to="/games" />} />
-      </Switch>} 
+      </Switch>}  
   </div>)
 }
 
 const mapStateToProps = state => ({
-  authenticated: !!state.currentUser
+  authenticated: !!state.currentUser,
+  currentUser: state.currentUser,
+  signupUser: state.signupUser
 })
 
 export default withRouter(connect(mapStateToProps)(Routes))

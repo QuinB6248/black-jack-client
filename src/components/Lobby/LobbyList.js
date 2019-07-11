@@ -15,7 +15,7 @@ if(!props.games) {
 const { games, onChange, onSubmit, values } = props
 console.log('GAMES', values)
 
-const listOfGames = games.map(game => <li key={game.id}><Link to={`/games/${game.id}`}>{game.name}</Link></li>)
+const listOfGames = games.map(game => <li key={game.id}><Link to={`/streamdata/${game.id}`}>{game.name}</Link></li>)
   return (
     <div>
       
