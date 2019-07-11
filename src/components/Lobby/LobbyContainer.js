@@ -8,7 +8,7 @@ import request from 'superagent'
 class LobbyContainer extends Component {
 state = {
     games: [],
-    game: ''
+    name: ''
   }
 url = 'https://blooming-sierra-78117.herokuapp.com'
 
@@ -19,6 +19,7 @@ componentDidMount() {//loads all games
     this.source.onmessage = this.props.fetchGames
   }
 onChange = (event) => {
+  console.log('EVENT', event)
     const { value } = event.target
     this.setState({
       game: value
@@ -27,11 +28,13 @@ onChange = (event) => {
 onSubmit = (event) => {
   event.preventDefault()
   const { game } = this.state
+  console.log('responsetest: ', game)
   this.setState({game: ''})
-    
+  const jwt = this.props.currentUser
   request
     .post(`${this.url}/games`)
-    .send({game})
+    .send({name: game})
+    .set('Authorization', `Bearer ${jwt}`)
     .then(response => {
         console.log('responsetest: ', response)
       })
@@ -40,7 +43,7 @@ onSubmit = (event) => {
 
   
 render() {
-    
+    console.log('CURGAMES', this.props.games)
   return (
     <div>
       <LobbyList
@@ -56,7 +59,8 @@ render() {
 }
 const mapStateToProps = state => ({
   games: state.games,
-  authenticated: !!state.currentUser
+  authenticated: !!state.currentUser,
+  currentUser: state.currentUser
   
 })
 

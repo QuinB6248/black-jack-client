@@ -12,9 +12,8 @@ import request from 'superagent'
 
 class GameContainer extends Component {
 state = {
-    games: [],
-    game: ''
-  }
+    game: []
+}
 url = 'https://blooming-sierra-78117.herokuapp.com'
 
 source = new EventSource(`${this.url}/stream`)
@@ -23,8 +22,17 @@ componentDidMount() {
     
     this.source.onmessage = this.props.fetchGameDetails
   }
-
-
+sentEvent = () => {
+  const { game } = this.state
+  request
+  .post(`${this.url}/users`)
+  .send({game})
+  .then(response => {
+      console.log('responsetest: ', response)
+    })
+  .catch(console.error)
+}
+  
   
 render() {
     
