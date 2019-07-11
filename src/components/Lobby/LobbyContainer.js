@@ -12,10 +12,10 @@ class LobbyContainer extends Component {
     game: ''
     //addMode: false
   }
-
+  
   url = 'https://blooming-sierra-78117.herokuapp.com'
 
-  source = new EventSource(`${this.url}/lobby`)
+  source = console.log('SOURCE',new EventSource(`${this.url}/lobby`))
 
   componentDidMount() {//loads all games
     this.source.onmessage = this.props.fetchGames
