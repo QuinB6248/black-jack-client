@@ -24,9 +24,9 @@ function Routes(props) {
       
       {props.authenticated &&
       <Switch>
-        <Route path="/lobby" exact component={LobbyContainer} />
-        {/* <Route path="/lobby/:id" component={GameContainer} />  */}
-        <Route path="" render={() => <Redirect to="/lobby" />} />
+        <Route path="/games" exact component={LobbyContainer} />
+        <Route path="/games/:id" component={GameContainer} />  
+        <Route path="" render={() => <Redirect to="/games" />} />
       </Switch>} 
   </div>)
 }

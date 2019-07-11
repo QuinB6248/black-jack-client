@@ -6,7 +6,7 @@ const gamesFetched = games => ({
 })
 
 export const fetchGames = (event) => (dispatch) => {
-  //console.log('event.data test:', event.data)
+  console.log('event.data test:', event.data)
 
   const games = JSON.parse(event.data)
 
