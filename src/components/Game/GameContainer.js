@@ -1,8 +1,3 @@
-//game id
-//players
-//initial state
-//players 
-
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import GameDetails from './GameDetails'
@@ -10,9 +5,12 @@ import { fetchGameDetails } from '../../actions/game'
 import request from 'superagent'
 
 
+
 class GameContainer extends Component {
 state = {
-    game: ""
+    game: "",
+    stand: false,
+    hit: false
 }
 url = 'https://blooming-sierra-78117.herokuapp.com'
 
@@ -20,28 +18,61 @@ url = 'https://blooming-sierra-78117.herokuapp.com'
 source = new EventSource(`${this.url}/streamdata/${this.props.match.params.id}`)
 
 componentDidMount() {
-    
     this.source.onmessage = this.props.fetchGameDetails
   }
-// sentEvent = () => {
-//   const { game } = this.state
-//   request
-//   .post(`${this.url}/users`)
-//   .send({game})
-//   .then(response => {
-//       console.log('responsetest: ', response)
-//     })
-//   .catch(console.error)
-// }
-  
-  
+startGame = () => {
+  const jwt = this.props.currentUser
+  request(`${this.url}/games/${this.props.match.params.id}`)
+    .set('Authorization', `Bearer ${jwt}`)
+    .then(response => {
+        console.log('responsetestand: ', response)
+      })
+    .catch(console.error)
+}
+
+setStand = () => {
+  this.setState({
+    stand: true
+  })
+  const { stand } = this.state
+  this.setState({stand: false})
+  const jwt = this.props.currentUser
+  request
+    .put(`${this.url}/games/${this.props.match.params.id}`)
+    .send({stand})
+    .set('Authorization', `Bearer ${jwt}`)
+    .then(response => {
+        console.log('responsetestand: ', response)
+      })
+    .catch(console.error)
+}
+setHit = () => {
+  this.setState({
+    stand: true
+  })
+  //const { stand } = this.state
+  this.setState({stand: false})
+  const jwt = this.props.currentUser
+  request
+    .post(`${this.url}/games/${this.props.match.params.id}`)
+    .send()
+    .set('Authorization', `Bearer ${jwt}`)
+    .then(response => {
+        console.log('responsehit: ', response)
+      })
+    .catch(console.error)
+}
+
+
 render() {
-    // const gameId = this.props.game.gameId
-    // console.log('IDD', gameId)
   return (
     <div>
+      
       <GameDetails
         game={this.props.game} 
+        setStand = {this.setStand}
+        setBusted={this.setBusted}
+        startGame={this.startGame}
         
         />
     </div>
@@ -50,8 +81,8 @@ render() {
 }
 const mapStateToProps = state => ({
   game: state.game,
-  games: state.games
-  
+  games: state.games,
+  currentUser: state.currentUser
   
 })
 

@@ -6,6 +6,7 @@ export default function messages (state = initialState, {type, payload}) {
   switch (type) {
     case GAME_DETAILS_FETCHED:
       return payload
+    
     default:
       return state
   }

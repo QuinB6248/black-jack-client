@@ -17,7 +17,7 @@ function Routes(props) {
         <Route exact path="/" component={BeginScreen}/>
         <Route path="/signup" component={SignUpFormContainer}/>
         <Route path="/login" component={LoginFormContainer}/>
-        <Route path="" render={() => <Redirect to="/" />} />   
+         <Route path="" render={() => <Redirect to="/" />} />   
       </Switch> }
       
       
@@ -26,7 +26,7 @@ function Routes(props) {
       <Switch>
         <Route path="/games" exact component={LobbyContainer} />
         <Route path="/streamdata/:id" component={GameContainer} />  
-        <Route path="" render={() => <Redirect to="/games" />} />
+        <Route path="" render={() => <Redirect to="/games" />} /> 
       </Switch>}  
   </div>)
 }

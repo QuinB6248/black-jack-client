@@ -17,4 +17,3 @@ export const fetchGameDetails = (event) => (dispatch) => {
    dispatch(gameDetailsFetched(game))
 }
 
-

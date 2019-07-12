@@ -1,0 +1,54 @@
+
+.userSpace {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background: rgb(132, 144, 147);
+  width: 90%;
+  height: 100px;
+  margin: auto;
+  margin-top: 20px;
+  border-radius: 5px;
+  padding: 20px 20px;
+  
+}
+
+.nameSpace {
+  background: rgb(188, 219, 223);
+  width: 15%;
+  height: 50px;
+  padding:2px;
+
+}
+
+.cardSpace {
+  
+  
+  width: 10%;
+  height: 100px;
+  padding:2px;
+
+
+}
+
+.score {
+  background: rgb(188, 219, 223);
+  width: 15%;
+  height: 40px;
+  padding:2px;
+
+}
+
+.total{
+  background: rgb(188, 219, 223);
+  width: 8%;
+  height: 50px;
+  padding:2px;
+
+}
+
+
+.imgSize{
+  max-width: 100%;
+  max-height: 100%;
+}
