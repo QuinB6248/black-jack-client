@@ -2,14 +2,11 @@
 import React from 'react'
 import '../style.css'
 
-
-
 export default function GameDetails(props) {
   if(!props.game) {
     return 'loading...'
     }
 
-    
 const { game, setStand, setHit, startGame} = props
 console.log('GAMES', game)
 
@@ -19,9 +16,9 @@ const userDetails = game.map(user =>
   <div className="nameSpace">
     {user.name}
   </div>
-  <div className="cardSpace"  >
+  <div className="cardSpace">
     
-   <img className="imgSize" src={`../img/jack-2.png`}/> 
+   <img className="imgSize" src={`../img/queen.png`}/> 
     {/* {cardDetails} */}
   </div>
   <div >
@@ -32,10 +29,10 @@ const userDetails = game.map(user =>
   </div>
   <div className="score">
     <div>
-       total:
+       total:{}
     </div>
     <div>
-       score:
+       score:{user.handScore}
     </div>
   </div>
 </div>)
@@ -49,30 +46,9 @@ const userDetails = game.map(user =>
       <button onClick={startGame}>START</button>
     </div>
     {userDetails}
-    {/*<div className="userSpace">
-      <div className="nameSpace">
-      {listOfUser}
-      </div>
-      <div className="cardSpace">
-      cardOne
-      </div>
-      <div >
-        <button onClick={setStand}>STAND</button>
-      </div>
-      <div >
-        <button onClick={setBusted}>BUSTED</button>
-      </div>
-      <div className="score">
-        <div>
-          total:
-        </div>
-        <div>
-          score:
-        </div>
-      </div>
+    
       
-    </div> */}
-
+    
   </div>
     
   )

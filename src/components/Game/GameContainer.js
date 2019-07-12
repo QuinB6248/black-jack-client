@@ -18,7 +18,9 @@ url = 'https://blooming-sierra-78117.herokuapp.com'
 source = new EventSource(`${this.url}/streamdata/${this.props.match.params.id}`)
 
 componentDidMount() {
+  
     this.source.onmessage = this.props.fetchGameDetails
+    console.log('ONMESSAGE', this.source.onmessage)
   }
 startGame = () => {
   const jwt = this.props.currentUser
@@ -48,10 +50,10 @@ setStand = () => {
 }
 setHit = () => {
   this.setState({
-    stand: true
+    hit: true
   })
   //const { stand } = this.state
-  this.setState({stand: false})
+  this.setState({hit: false})
   const jwt = this.props.currentUser
   request
     .post(`${this.url}/games/${this.props.match.params.id}`)
@@ -65,13 +67,15 @@ setHit = () => {
 
 
 render() {
+  console.log('GAMEeeeeee', this.props.game)
   return (
+
     <div>
       
       <GameDetails
         game={this.props.game} 
         setStand = {this.setStand}
-        setBusted={this.setBusted}
+        setHit={this.setHit}
         startGame={this.startGame}
         
         />
